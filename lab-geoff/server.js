@@ -16,23 +16,32 @@ module.exports = exports = {};
 app.use(require('morgan')('dev'));
 app.use(require('cors')());
 app.use(require('./route/player-route.js'));
+app.use(require('./route/team-route.js'));
 app.use(require('./lib/error-middleware.js'));
 
+var state = 'down';
+var boot = null;
+
 exports.start = function() {
+  debug('start(), state:',state);
   return new Promise( (resolve, reject) => {
-    // Q: Is this overkill to force mongoose to connect
-    //    before the app starts listening?
-    mongoose.connect(MONGODB_URI)
+    if(state === 'up') return resolve();
+    if(boot) return boot;
+    boot = mongoose.connect(MONGODB_URI)
     .then( () => {
       debug('Mongoose connected:', MONGODB_URI);
     })
     .then(app.listen(PORT))
     .then( () => {
       debug('Server up:', PORT);
+      state = 'up';
+      boot = null;
       resolve();
     })
     .catch( err => reject(err));
   });
 };
+
+//TODO: exports.stop
 
 exports.PORT = PORT;
