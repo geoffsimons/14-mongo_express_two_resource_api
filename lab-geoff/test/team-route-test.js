@@ -10,11 +10,6 @@ const Player = require('../model/player.js');
 const server = require('../server.js');
 const url = `http://localhost:${server.PORT}/api/team`;
 
-// const examplePlayer = {
-//   name: 'Example Player',
-//   email: 'john@example.com'
-// };
-
 const exampleTeam = {
   name: 'The Best Team'
 };
@@ -87,19 +82,6 @@ describe('Team Routes', function() {
         done();
       })
       .catch(done);
-
-      // debug(' ... making team ...');
-      // new Team(exampleTeam).save()
-      // .then( team => {
-      //   this.tempTeam = team;
-      //   debug(' ... adding player to ', team._id);
-      //   return Team.findByIdAndAddPlayer(team._id, makePlayer());
-      // })
-      // .then( player => {
-      //   this.tempPlayer = player;
-      //   done();
-      // })
-      // .catch(done);
     }); //before
 
     after( done => cleanup(done));
@@ -190,7 +172,7 @@ describe('Team Routes', function() {
           expect(res.body.name).to.equal(exampleTeam.name);
           expect(res.body.players).to.have.length(1);
           expect(res.body.players[0]).to.equal(this.tempPlayer._id.toString());
-          //TODO: we likely want to also check the player object,
+          //TODO: we likely want to also check the player object for correct teamId,
           //      but right now the PUT call only returns the players
           //      as an array of id strings.
           done();
@@ -222,41 +204,3 @@ describe('Team Routes', function() {
 
   }); // PUT /api/team/:teamId/player
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
