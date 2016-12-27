@@ -6,7 +6,6 @@ const Player = require('../model/player.js');
 const debug = require('debug')('mnp:player-route-test');
 
 const server = require('../server.js');
-
 const url = `http://localhost:${server.PORT}/api/player`;
 
 const examplePlayer = {
@@ -149,6 +148,7 @@ describe('Player Routes', function() {
         .end( (err, res) => {
           debug('after update:',res.body);
           expect(res.status).to.equal(202);
+          //TODO: Ideally, res.body should equal the updated player.
           expect(res.body.ok).to.equal(1);
           done();
         });
