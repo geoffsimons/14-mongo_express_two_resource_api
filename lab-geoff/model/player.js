@@ -8,7 +8,7 @@ const playerSchema = Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
   timestamp: { type: Date, required: true },
-  teamId: { type: Schema.Types.ObjectId, required: true } //required for now
+  teamId: { type: Schema.Types.ObjectId }
 });
 
 module.exports = mongoose.model('player', playerSchema);
