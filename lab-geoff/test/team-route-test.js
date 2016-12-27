@@ -198,6 +198,28 @@ describe('Team Routes', function() {
       });
     }); // valid teamId and player
 
+    describe('with a bogus team id', () => {
+      it('should return a 404', done => {
+        request.put(`${url}/12345/player`)
+        .send(this.tempPlayer)
+        .end( (err, res) => {
+          expect(res.status).to.equal(404);
+          done();
+        });
+      });
+    }); // with a bogus id
+
+    describe('with a valid team id and a bogus player', () => {
+      it('should return a 400', done => {
+        request.put(`${url}/${this.tempTeam._id}/player`)
+        .send({ hello: 'Not a real field' })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    }); // valid team id, bogus player
+
   }); // PUT /api/team/:teamId/player
 });
 
