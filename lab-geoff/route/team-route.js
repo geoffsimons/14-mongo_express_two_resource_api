@@ -27,9 +27,7 @@ router.get('/api/team/:id', function(req, res, next) {
 router.get('/api/team', function(req, res, next) {
   debug('GET /api/team');
   Team.find({}, { _id: 1 } )
-  .then( teams => res.json(
-    teams.map( team => team._id))
-  )
+  .then( teams => res.json(teams.map( team => team._id)))
   .catch(next);
 });
 

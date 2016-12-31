@@ -172,9 +172,6 @@ describe('Team Routes', function() {
           expect(res.body.name).to.equal(exampleTeam.name);
           expect(res.body.players).to.have.length(1);
           expect(res.body.players[0]).to.equal(this.tempPlayer._id.toString());
-          //TODO: we likely want to also check the player object for correct teamId,
-          //      but right now the PUT call only returns the players
-          //      as an array of id strings.
           done();
         });
       });

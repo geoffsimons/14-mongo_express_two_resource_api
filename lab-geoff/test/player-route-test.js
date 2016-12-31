@@ -55,8 +55,17 @@ describe('Player Routes', function() {
           done();
         });
       });
-    });
-
+    }); // missing name
+    describe('with a missing email', () => {
+      it('should return 400', done => {
+        request.post(url)
+        .send({ name: 'Only a Name' })
+        .end( (err, res) => {
+          expect(res.status).to.equal(400);
+          done();
+        });
+      });
+    }); // missing email
   }); // POST /api/player
 
   describe('GET /api/player/:id', function() {
@@ -121,11 +130,9 @@ describe('Player Routes', function() {
         expect(res.status).to.equal(200);
         expect(res.body).to.be.an('array');
         expect(res.body).to.have.length(4);
-        //TODO: Assert more stuff?
         done();
       });
     });
-
   }); // GET /api/player
 
   describe('PUT /api/player/:id', function() {
@@ -148,13 +155,11 @@ describe('Player Routes', function() {
         .end( (err, res) => {
           debug('after update:',res.body);
           expect(res.status).to.equal(202);
-          //TODO: Ideally, res.body should equal the updated player.
           expect(res.body.ok).to.equal(1);
           done();
         });
       });
     }); // valid id and update
-
   }); // PUT /api/player/:id
 
   describe('DELETE /api/player/:id', function() {

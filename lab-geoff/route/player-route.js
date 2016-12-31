@@ -11,12 +11,10 @@ const router = module.exports = new Router();
 
 router.post('/api/player', jsonParser, function(req, res, next) {
   debug('POST /api/player',req.body);
-  //TODO: Move the default timestamping into the model.
   req.body.timestamp = Date.now();
   new Player(req.body).save()
   .then( player => res.status(201).json(player))
   .catch( err => {
-    // NOTE: It sucks that mongoose won't tell us what field is invalid?
     err = createError(400, err.name);
     next(err);
   });
@@ -38,7 +36,6 @@ router.get('/api/player', function(req, res, next) {
 
 router.put('/api/player/:id', jsonParser, function(req, res, next) {
   debug('PUT /api/player/:id',req.params.id,req.body);
-  //TODO: findByIdAndUpdate
   Player.update({ _id: req.params.id }, req.body) //TODO: { new: true }
   .then( result => res.status(202).json(result))
   .catch(next);
