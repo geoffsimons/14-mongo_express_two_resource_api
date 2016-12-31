@@ -36,7 +36,7 @@ router.get('/api/player', function(req, res, next) {
 
 router.put('/api/player/:id', jsonParser, function(req, res, next) {
   debug('PUT /api/player/:id',req.params.id,req.body);
-  Player.update({ _id: req.params.id }, req.body) //TODO: { new: true }
+  Player.update({ _id: req.params.id }, req.body)
   .then( result => res.status(202).json(result))
   .catch(next);
 });

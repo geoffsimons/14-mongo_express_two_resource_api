@@ -140,7 +140,6 @@ describe('Team Routes', function() {
         expect(res.status).to.equal(200);
         expect(res.body).to.be.an('array');
         expect(res.body).to.have.length(4);
-        //TODO: Possibly assert that all the items are there.
         done();
       });
     });
@@ -198,6 +197,5 @@ describe('Team Routes', function() {
         });
       });
     }); // valid team id, bogus player
-
   }); // PUT /api/team/:teamId/player
 });

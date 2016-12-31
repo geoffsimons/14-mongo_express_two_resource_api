@@ -42,6 +42,4 @@ exports.start = function() {
   });
 };
 
-//TODO: exports.stop
-
 exports.PORT = PORT;
