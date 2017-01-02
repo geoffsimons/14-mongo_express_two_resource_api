@@ -1,7 +1,7 @@
 {
-  "name": "13-mongo-and-express-api-gws",
+  "name": "14-mongo-and-express-api-gws",
   "version": "1.0.0",
-  "description": "Single resource api using express and mongo.",
+  "description": "Two resource api using express and mongo.",
   "main": "index.js",
   "scripts": {
     "test": "DEBUG='mnp*' mocha",
